@@ -12,8 +12,10 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
     override fun onCreate(db: SQLiteDatabase) {
         val SQL_CREATE_USER_TABLE = ("CREATE TABLE " + TABLE_USERS + " ("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + COLUMN_EMAIL + " TEXT NOT NULL, "
-                + COLUMN_PASSWORD + " TEXT NOT NULL" + ")")
+                + COLUMN_NAMA + " TEXT NOT NULL,"
+                + COLUMN_TANGGAL_LAHIR + " TEXT NOT NULL,"
+                + COLUMN_JENIS_KELAMIN + " TEXT NOT NULL,"
+                + COLUMN_ALAMAT + " TEXT NOT NULL" + ")")
         db.execSQL(SQL_CREATE_USER_TABLE)
     }
 
@@ -41,6 +43,18 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
         return exists
     }
 
+    fun insertUserData(nama: String, tanggalLahir: String, jenisKelamin: String, alamat: String): Boolean {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put(COLUMN_NAMA, nama)
+        values.put(COLUMN_TANGGAL_LAHIR, tanggalLahir)
+        values.put(COLUMN_JENIS_KELAMIN, jenisKelamin)
+        values.put(COLUMN_ALAMAT, alamat)
+        val result = db.insert(TABLE_USERS, null, values)
+        db.close()
+        return result != -1L
+    }
+
     companion object {
         private const val DATABASE_VERSION = 2
         private const val DATABASE_NAME = "digitaltalent.db"
@@ -48,5 +62,9 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
         const val COLUMN_ID = "id"
         const val COLUMN_EMAIL = "email"
         const val COLUMN_PASSWORD = "password"
+        const val COLUMN_NAMA = "nama"
+        const val COLUMN_TANGGAL_LAHIR = "tanggal_lahir"
+        const val COLUMN_JENIS_KELAMIN = "jenis_kelamin"
+        const val COLUMN_ALAMAT = "alamat"
     }
 }
