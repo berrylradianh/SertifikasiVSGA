@@ -8,6 +8,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import sertifikasivsga.ac.ui.data.add.AddDataActivity
+import sertifikasivsga.ac.ui.data.list.UserListActivity
 import sertifikasivsga.ac.ui.information.InformationActivity
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +31,12 @@ class MainActivity : AppCompatActivity() {
         val addDataCardView = findViewById<CardView>(R.id.addDataCardView)
         addDataCardView.setOnClickListener {
             val intent = Intent(this, AddDataActivity::class.java)
+            startActivity(intent)
+        }
+
+        val userListCardView = findViewById<CardView>(R.id.viewDataCardView)
+        userListCardView.setOnClickListener {
+            val intent = Intent(this, UserListActivity::class.java)
             startActivity(intent)
         }
     }

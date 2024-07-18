@@ -4,6 +4,7 @@
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_information">Tentang Aplikasi</string>
     <string name="title_activity_add">Masukkan Data</string>
+    <string name="title_activity_user_list">Data Mahasiswa</string>
     <string name="content_information">
         Aplikasi Kampusku merupakan aplikasi yang digunakan untuk pendataan mahasiswa.
         User nantinya bisa menambahkan, update dan hapus data mahasiswa

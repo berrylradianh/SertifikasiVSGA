@@ -15,12 +15,13 @@ class AddDataActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_input_data)
+        setContentView(R.layout.activity_add_data)
 
         // Enable the back button
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val editTextNama = findViewById<EditText>(R.id.editTextNama)
+        val editTextNim = findViewById<EditText>(R.id.editTextNim)
         val editTextTanggalLahir = findViewById<EditText>(R.id.editTextTanggalLahir)
         val spinnerJenisKelamin = findViewById<Spinner>(R.id.spinnerJenisKelamin)
         val editTextAlamat = findViewById<EditText>(R.id.editTextAlamat)
@@ -50,13 +51,14 @@ class AddDataActivity : AppCompatActivity() {
 
         // Set up the save button
         buttonSimpan.setOnClickListener {
+            val nim = editTextNim.text.toString()
             val nama = editTextNama.text.toString()
             val tanggalLahir = editTextTanggalLahir.text.toString()
             val jenisKelamin = spinnerJenisKelamin.selectedItem.toString()
             val alamat = editTextAlamat.text.toString()
 
             val dbHelper = DbHelper(this)
-            val success = dbHelper.insertUserData(nama, tanggalLahir, jenisKelamin, alamat)
+            val success = dbHelper.insertUserData(nim, nama, tanggalLahir, jenisKelamin, alamat)
 
             if (success) {
                 finish()
