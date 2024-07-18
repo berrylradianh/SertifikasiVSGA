@@ -1,14 +1,17 @@
 package sertifikasivsga.ac.ui.data.add
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import sertifikasivsga.ac.R
 import sertifikasivsga.ac.helper.DbHelper
+import sertifikasivsga.ac.ui.data.list.UserListActivity
 import java.util.*
 
 class AddDataActivity : AppCompatActivity() {
@@ -61,12 +64,14 @@ class AddDataActivity : AppCompatActivity() {
             val success = dbHelper.insertUserData(nim, nama, tanggalLahir, jenisKelamin, alamat)
 
             if (success) {
-                finish()
+                Toast.makeText(this, "Data berhasil disimpan", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, UserListActivity::class.java)
+                startActivity(intent)
+                finish() // Close the AddDataActivity
             } else {
-                // Handle failure
+                Toast.makeText(this, "Gagal menyimpan data", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
 
     // Handle the back button action
